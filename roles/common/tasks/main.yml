@@ -1,0 +1,20 @@
+- name: ensure htop is at the latest version
+  apt: name={{ item }} state=latest
+  with_items:
+     - htop
+     - mc
+
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  become_user: root
+
+- name: Set LC_ALL in Locale file
+  lineinfile: dest=/etc/default/locale
+    regexp="LC_ALL"
+    line="LC_ALL=\"en_US.UTF-8\""
+
+- name: Set LANGUAGE in Locale file
+  lineinfile: dest=/etc/default/locale
+    regexp="LANGUAGE"
+    line="LANGUAGE=\"en_US.UTF-8\""

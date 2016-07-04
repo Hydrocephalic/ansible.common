@@ -1,0 +1,11 @@
+---
+- hosts: all
+
+  roles:
+     - common
+     - { role: ntp, ntp_config_server: [0.hu.pool.ntp.org, 1.hu.pool.ntp.org] }
+
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  become_user: root
